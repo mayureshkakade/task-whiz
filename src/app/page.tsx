@@ -22,7 +22,7 @@ export default function Home() {
         <FilterDropdownButton onUpdateFilter={() => {}} />
       </div>
       <hr className="border-t-2 border-zinc-300 my-1 md:my-4 mb-4 md:mb-7 w-full"></hr>
-      <div className="grid grid-cols-1 gap-4 w-full sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(18rem,1fr))] gap-4">
         <Task
           description="1Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum eaque nesciunt natus saepe repudiandae voluptatum quos quo possimus illo labore sequi."
           status={StatusOption.TODO}

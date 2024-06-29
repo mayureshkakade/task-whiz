@@ -32,7 +32,7 @@ const Task: FC<TaskProps> = ({ description }) => {
   };
 
   return (
-    <Card className="bg-[#FFFAFA] border-zinc-200 shadow-md break-inside-avoid w-full h-auto sm:h-72 sm:relative">
+    <Card className="bg-[#FFFAFA] border-zinc-200 shadow-md break-inside-avoid w-fit h-full grid grid-cols-1 grid-rows-[100px_1fr]">
       <CardHeader className="flex-row justify-between items-start gap-4">
         {/* TODO: Add a title prop to the Task component */}
         <CardTitle className="text-lg sm:text-xl">
@@ -63,15 +63,12 @@ const Task: FC<TaskProps> = ({ description }) => {
       </CardHeader>
       <CardContent className="pb-4 flex flex-col justify-between">
         {/* TODO: Add a description prop to the Task component */}
-        <p
-          title={description}
-          className="mb-4 sm:overflow-hidden sm:line-clamp-4 2xl:line-clamp-6"
-        >
+        <p title={description} className="mb-4">
           {description}
         </p>
 
         {/* TODO: Send the currentStatus value to both the Status component and the StatusDropdown component */}
-        <div className="sm:absolute sm:bottom-2 sm:w-1/2">
+        <div className="sm:w-1/2">
           {isEditing ? (
             <StatusDropdown
               currentStatus={currentStatus}
