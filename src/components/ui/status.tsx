@@ -34,10 +34,10 @@ const StatusDropdown: FC<StatusDropdownProps> = ({
 
   return (
     <Select onValueChange={onDropdownChange} value={currentStatus}>
-      <SelectTrigger className="w-full font-bold">
+      <SelectTrigger className="w-full">
         <SelectValue placeholder={getStatusText(currentStatus)} />
       </SelectTrigger>
-      <SelectContent className="font-bold">
+      <SelectContent>
         <SelectItem value={StatusOption.TODO} className="text-blue-500">
           {getStatusText(StatusOption.TODO)}
         </SelectItem>

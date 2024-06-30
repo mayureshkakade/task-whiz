@@ -6,17 +6,28 @@ import { PlusIcon, FilterIcon } from "lucide-react";
 import { Task } from "@/components/ui/task";
 import { FilterDropdownButton } from "@/components/ui/filter";
 import { StatusOption } from "@/components/ui/status";
+import { Lobster } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { NewTaskDialog } from "@/components/ui/new-task-dialog";
+
+const lobster = Lobster({
+  weight: "400",
+  subsets: ["latin"],
+  style: "normal",
+});
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center m-6 md:m-32 p-6 md:p-16 pt-4 md:pt-8 border-2 border-zinc-100 rounded-2xl shadow-lg bg-white">
       <div className="flex h-16 w-full items-center flex-nowrap gap-4 justify-between">
-        <Button size="icon" className="md:w-auto md:pl-4 md:pr-3 bg-zinc-600">
-          <span className="hidden md:inline">New Task</span>
-          <PlusIcon className="w-6 h-4 md:w-5 md:h-5 md:ml-1" />
-        </Button>
-        <h1 className="md:text-4xl text-2xl font-extrabold text-center">
-          TASK WHIZ
+        <NewTaskDialog />
+        <h1
+          className={cn([
+            lobster.className,
+            "xl:text-5xl sm:text-4xl text-3xl font-extrabold text-center",
+          ])}
+        >
+          Task Whiz
         </h1>
         {/* TODO: Add a onUpdateFilter prop to the FilterDropdownButton component */}
         <FilterDropdownButton onUpdateFilter={() => {}} />
