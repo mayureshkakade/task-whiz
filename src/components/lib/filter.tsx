@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "./button";
+import { Button } from "../ui/button";
 import { FilterIcon } from "lucide-react";
 import { StatusOption } from "./status";
 import { getStatusText } from "@/lib/utils";
@@ -38,7 +38,7 @@ const FilterDropdownButton: FC<FilterDropdownProps> = () => {
       <DropdownMenuTrigger asChild>
         <Button
           size="icon"
-          className="md:w-auto md:pl-4 md:pr-3 focus:ring-0 focus:ring-offset-0 focus:outline-none bg-zinc-600"
+          className="md:w-auto md:pl-4 md:pr-3 focus:ring-0 focus:ring-offset-0 focus:outline-none bg-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none"
         >
           <span className="hidden md:inline">Filter</span>
           <FilterIcon className="w-6 h-4 md:w-5 md:h-5 md:ml-1" />

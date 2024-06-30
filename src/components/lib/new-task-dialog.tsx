@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PlusIcon } from "lucide-react";
-import { Textarea } from "./textarea";
+import { Textarea } from "../ui/textarea";
 import { StatusDropdown, StatusOption } from "./status";
 import { useCallback, useState } from "react";
 

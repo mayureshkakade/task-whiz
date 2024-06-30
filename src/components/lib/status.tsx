@@ -4,7 +4,7 @@ import {
   SelectValue,
   SelectContent,
   SelectItem,
-} from "./select";
+} from "../ui/select";
 import { Circle } from "lucide-react";
 import { FC } from "react";
 import { getStatusClass, getStatusText } from "@/lib/utils";

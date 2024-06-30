@@ -1,4 +1,4 @@
-import { StatusOption } from "@/components/ui/status";
+import { StatusOption } from "@/components/lib/status";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -9,11 +9,11 @@ export function cn(...inputs: ClassValue[]) {
 export function getStatusText(status: StatusOption) {
   switch (status) {
     case StatusOption.TODO:
-      return "To Do";
+      return "TO-DO";
     case StatusOption.IN_PROGRESS:
-      return "In Progress";
+      return "IN PROGRESS";
     case StatusOption.DONE:
-      return "Done";
+      return "DONE";
   }
 }
 

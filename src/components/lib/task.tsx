@@ -1,10 +1,18 @@
 "use client";
 
-import { Button } from "./button";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./card";
+import { Button } from "../ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "../ui/card";
 import { Trash2Icon, PencilIcon, UndoIcon } from "lucide-react";
 import { Status, StatusDropdown, StatusOption } from "./status";
 import { FC, useCallback, useState } from "react";
+import { AlertDialog } from "@radix-ui/react-alert-dialog";
+import { AlertDialogWrapper } from "./alert-dialog";
 
 export interface TaskProps {
   description: string;
@@ -51,14 +59,19 @@ const Task: FC<TaskProps> = ({ description }) => {
               <PencilIcon className="w-4 h-4 sm:w-5 sm:h-5" />
             )}
           </Button>
-          <Button
-            onClick={onDelete}
-            variant={"ghost"}
-            size={"icon"}
-            className="h-7 w-7 hover:shadow-md"
+          <AlertDialogWrapper
+            title="Delete Task"
+            description="Are you sure you want to delete this task?"
+            onConfirm={onDelete}
           >
-            <Trash2Icon className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
-          </Button>
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              className="h-7 w-7 hover:shadow-md"
+            >
+              <Trash2Icon className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
+            </Button>
+          </AlertDialogWrapper>
         </div>
       </CardHeader>
       <CardContent className="pb-4 flex flex-col justify-between">

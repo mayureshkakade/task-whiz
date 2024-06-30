@@ -3,12 +3,12 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlusIcon, FilterIcon } from "lucide-react";
-import { Task } from "@/components/ui/task";
-import { FilterDropdownButton } from "@/components/ui/filter";
-import { StatusOption } from "@/components/ui/status";
+import { Task } from "@/components/lib/task";
+import { FilterDropdownButton } from "@/components/lib/filter";
+import { StatusOption } from "@/components/lib/status";
 import { Lobster } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { NewTaskDialog } from "@/components/ui/new-task-dialog";
+import { NewTaskDialog } from "@/components/lib/new-task-dialog";
 
 const lobster = Lobster({
   weight: "400",
