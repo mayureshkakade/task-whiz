@@ -58,9 +58,11 @@ const StatusDropdown: FC<StatusDropdownProps> = ({
 const Status: FC<StatusProps> = ({ status }) => {
   return (
     <div className="flex items-center gap-2 h-10">
-      <Circle
-        className={`w-4 h-4 mr-1 text-zinc-500 ${getStatusClass(status)}`}
-      />
+      <span>
+        <Circle
+          className={`w-4 h-4 mr-1 text-zinc-500 ${getStatusClass(status)}`}
+        />
+      </span>
       <span className="text-zinc-800 font-semibold">
         {getStatusText(status)}
       </span>

@@ -1,6 +1,7 @@
 import { StatusOption } from "@/components/lib/status";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { FormError } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -27,3 +28,11 @@ export function getStatusClass(status: StatusOption) {
       return "fill-green-500";
   }
 }
+
+export const isError = (error: any): error is Error => {
+  return "message" in error;
+};
+
+export const isFormError = (error: any): error is FormError => {
+  return "errorMessage" in error;
+};

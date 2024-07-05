@@ -20,9 +20,9 @@ export interface TaskProps {
   title: string;
 }
 
-const Task: FC<TaskProps> = ({ description }) => {
+const Task: FC<TaskProps> = ({ description, title, status }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [currentStatus, setCurrentStatus] = useState(StatusOption.TODO); // TODO: Use the currentStatus prop for default value coming from api
+  const [currentStatus, setCurrentStatus] = useState(status);
 
   const updateTaskStatus = useCallback(
     (status: StatusOption) => {
@@ -40,12 +40,9 @@ const Task: FC<TaskProps> = ({ description }) => {
   };
 
   return (
-    <Card className="bg-[#FFFAFA] border-zinc-200 shadow-md break-inside-avoid w-fit h-full grid grid-cols-1 grid-rows-[100px_1fr]">
-      <CardHeader className="flex-row justify-between items-start gap-4">
-        {/* TODO: Add a title prop to the Task component */}
-        <CardTitle className="text-lg sm:text-xl">
-          Card Title asd a asd asd aksjd asd{" "}
-        </CardTitle>
+    <Card className="bg-[#FFFAFA] border-zinc-200 shadow-md break-inside-avoid h-full grid grid-cols-1 grid-rows-[100px_1fr]">
+      <CardHeader className="flex-row justify-between items-center gap-4">
+        <CardTitle className="text-lg sm:text-xl">{title}</CardTitle>
         <div className="flex gap-1">
           <Button
             onClick={() => setIsEditing(!isEditing)}
@@ -75,12 +72,9 @@ const Task: FC<TaskProps> = ({ description }) => {
         </div>
       </CardHeader>
       <CardContent className="pb-4 flex flex-col justify-between">
-        {/* TODO: Add a description prop to the Task component */}
         <p title={description} className="mb-4">
           {description}
         </p>
-
-        {/* TODO: Send the currentStatus value to both the Status component and the StatusDropdown component */}
         <div className="sm:w-1/2">
           {isEditing ? (
             <StatusDropdown

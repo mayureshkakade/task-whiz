@@ -23,13 +23,15 @@ const isStatusOption = (value: string): value is StatusOption => {
   return Object.values(StatusOption).includes(value as StatusOption);
 };
 
-const FilterDropdownButton: FC<FilterDropdownProps> = () => {
+const FilterDropdownButton: FC<FilterDropdownProps> = ({ onUpdateFilter }) => {
   const [filter, setFilter] = useState<StatusOption | "">("");
   const onFilterChange = (value: string) => {
     if (isStatusOption(value)) {
       setFilter(value);
+      onUpdateFilter(value);
     } else {
       setFilter("");
+      onUpdateFilter("");
     }
   };
 
