@@ -30,7 +30,6 @@ const Task: FC<TaskProps> = ({
 
   const updateTaskStatus = useCallback(
     async (status: StatusOption) => {
-      console.log(status);
       try {
         await updateStatus(id, status);
         fetchTasks();
