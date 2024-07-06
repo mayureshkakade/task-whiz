@@ -1,17 +1,10 @@
 "use client";
 
 import { Button } from "../ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "../ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { Trash2Icon, PencilIcon, UndoIcon } from "lucide-react";
 import { Status, StatusDropdown, StatusOption } from "./status";
 import { FC, useCallback, useState } from "react";
-import { AlertDialog } from "@radix-ui/react-alert-dialog";
 import { AlertDialogWrapper } from "./alert-dialog";
 import { useToast } from "../ui/use-toast";
 import { deleteTask, updateStatus } from "@/app/api/api-helper";
