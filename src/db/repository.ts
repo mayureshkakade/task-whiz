@@ -14,9 +14,17 @@ export const addNewTask = async ({ title, description, status }: Task) => {
 };
 
 export const updateTask = async (id: string, taskData: Task) => {
+  const existingTask = (
+    await db.select().from(task).where(eq(task.id, id)).limit(1)
+  )[0];
+  if (!existingTask) {
+    throw new Error("Task not found");
+  }
+
+  existingTask.status = taskData.status;
   const updatedTask = await db
     .update(task)
-    .set(taskData)
+    .set(existingTask)
     .where(eq(task.id, id));
   return updatedTask;
 };

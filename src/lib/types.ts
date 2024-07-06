@@ -1,7 +1,7 @@
 import { StatusOption } from "@/components/lib/status";
 
 export type Task = {
-  id?: string;
+  id: string;
   title: string;
   description: string | null;
   status: StatusOption;
@@ -11,7 +11,7 @@ export type FormError = {
   errorMessage: string;
 };
 
-export type FormType = Task & { isLoading: boolean };
+export type FormType = Omit<Task, "id"> & { isLoading: boolean };
 
 export enum FormActionType {
   SET_TITLE = "SET_TITLE",

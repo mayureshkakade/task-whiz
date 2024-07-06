@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Select,
   SelectTrigger,
@@ -6,7 +8,7 @@ import {
   SelectItem,
 } from "../ui/select";
 import { Circle } from "lucide-react";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { getStatusClass, getStatusText } from "@/lib/utils";
 
 export enum StatusOption {
@@ -17,7 +19,7 @@ export enum StatusOption {
 
 export interface StatusDropdownProps {
   currentStatus: StatusOption;
-  updateTaskStatus: (status: StatusOption) => void;
+  updateTaskStatus: (status: StatusOption) => Promise<void>;
 }
 
 export interface StatusProps {
@@ -28,12 +30,19 @@ const StatusDropdown: FC<StatusDropdownProps> = ({
   currentStatus,
   updateTaskStatus,
 }) => {
-  const onDropdownChange = (value: StatusOption) => {
-    updateTaskStatus(value);
+  const [isLoading, setIsLoading] = useState(false);
+  const onDropdownChange = async (value: StatusOption) => {
+    setIsLoading(true);
+    await updateTaskStatus(value);
+    setIsLoading(false);
   };
 
   return (
-    <Select onValueChange={onDropdownChange} value={currentStatus}>
+    <Select
+      onValueChange={onDropdownChange}
+      value={currentStatus}
+      disabled={isLoading}
+    >
       <SelectTrigger className="w-full">
         <SelectValue placeholder={getStatusText(currentStatus)} />
       </SelectTrigger>

@@ -16,9 +16,10 @@ import { PlusIcon } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 import { StatusDropdown, StatusOption } from "./status";
 import { MouseEventHandler, useCallback, useReducer } from "react";
-import { FormAction, FormActionType, FormType, Task } from "@/lib/types";
-import { isError, isFormError } from "@/lib/utils";
+import { FormAction, FormActionType, FormType } from "@/lib/types";
+import { isError } from "@/lib/utils";
 import { useToast } from "../ui/use-toast";
+import { addNewTask } from "@/app/api/api-helper";
 
 const initialFormState: FormType = {
   title: "",
@@ -63,7 +64,7 @@ function NewTaskDialog({ fetchTasks }: NewTaskDialogProps) {
     initialFormState
   );
 
-  const updateTaskStatus = useCallback((status: StatusOption) => {
+  const updateTaskStatus = useCallback(async (status: StatusOption) => {
     dispatch({ type: FormActionType.SET_STATUS, payload: { status } });
   }, []);
 
@@ -74,33 +75,14 @@ function NewTaskDialog({ fetchTasks }: NewTaskDialogProps) {
     });
 
     try {
-      const response = await fetch("/api/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          description: description || null,
-          status,
-        }),
-      });
-
-      if (!response.ok) {
-        const json = await response.json();
-        if (isFormError(json)) {
-          throw new Error(json.errorMessage);
-        }
-      }
-
+      await addNewTask({ title, description, status });
+      fetchTasks();
       toast({
         description: "Task added successfully!",
       });
 
-      fetchTasks();
       dispatch({ type: FormActionType.RESET_FORM });
     } catch (error) {
-      console.error({ error });
       if (isError(error)) {
         toast({
           description: error.message,
@@ -138,7 +120,10 @@ function NewTaskDialog({ fetchTasks }: NewTaskDialogProps) {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-baseline gap-4">
-            <Label htmlFor="title" className="text-right">
+            <Label
+              htmlFor="title"
+              className="text-right before:content-['*_'] before:text-red-500"
+            >
               Title
             </Label>
             <Input

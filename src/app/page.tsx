@@ -28,7 +28,6 @@ export default function Home() {
         >
           Task Whiz
         </h1>
-        {/* TODO: Add a onUpdateFilter prop to the FilterDropdownButton component */}
         <FilterDropdownButton onUpdateFilter={applyTaskFilter} />
       </div>
       <hr className="border-t-2 border-zinc-300 my-1 md:my-4 mb-4 md:mb-7 w-full"></hr>
@@ -36,9 +35,11 @@ export default function Home() {
         {tasks.map(({ id, title, description, status }) => (
           <Task
             key={id}
+            id={id}
             description={description ?? ""}
             status={status}
             title={title}
+            fetchTasks={fetchTasks}
           />
         ))}
       </div>
